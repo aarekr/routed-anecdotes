@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import Footer from './components/Footer'
 import Menu from './components/Menu'
+import Notification from './components/Notification'
 
 const App = () => {
   //const padding = { padding: 5 }
-  //const [notification, setNotification] = useState('')
+  const [notification, setNotification] = useState(null)
   const [anecdotes, setAnecdotes] = useState([
     {
       content: 'If it hurts, do it more often',
@@ -23,8 +24,11 @@ const App = () => {
   ])
 
   const addNew = (anecdote) => {
+    console.log('addNew anecdote:', anecdote)
     anecdote.id = Math.round(Math.random() * 10000)
     setAnecdotes(anecdotes.concat(anecdote))
+    setNotification(`you added '${anecdote.content}' to the anecdote list`)
+    setTimeout(() => { setNotification(null) }, 5000)
   }
 
   /*const anecdoteById = (id) =>
@@ -42,6 +46,7 @@ const App = () => {
   return (
     <div>
       <Menu anecdotes={anecdotes} addNew={addNew} />
+      <Notification message={notification} />
       <Footer />
     </div>
   )

@@ -1,10 +1,12 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const CreateNew = ({ anecdotes, addNew }) => {
     console.log('CreateNew anecdotes:', anecdotes)
     const [content, setContent] = useState('')
     const [author, setAuthor] = useState('')
     const [info, setInfo] = useState('')
+    const navigate = useNavigate()
 
     const handleSubmit = (event) => {
       event.preventDefault()
@@ -13,6 +15,7 @@ const CreateNew = ({ anecdotes, addNew }) => {
       setContent('')
       setAuthor('')
       setInfo('')
+      navigate('/')
     }
 
     const handleContentChange = (event) => { setContent(event.target.value) }
