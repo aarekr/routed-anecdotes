@@ -1,6 +1,7 @@
 import { BrowserRouter as Router,Routes, Route, Link } from "react-router-dom"
 import About from './About'
 import AnecdoteList from './AnecdoteList'
+import Anecdote from "./Anecdote"
 import CreateNew from './CreateNew'
 
 const Menu = ({ anecdotes, addNew }) => {
@@ -17,6 +18,7 @@ const Menu = ({ anecdotes, addNew }) => {
           <Link style={padding} to="/">menu</Link>
         </div>
         <Routes>
+          <Route path="/anecdotes/:id" element={<Anecdote anecdotes={anecdotes} />} />
           <Route path="/anecdotes" element={<AnecdoteList anecdotes={anecdotes} />} />
           <Route path="/create" element={<CreateNew anecdotes={anecdotes} addNew={addNew} />} />
           <Route path="/about" element={<About />} />
