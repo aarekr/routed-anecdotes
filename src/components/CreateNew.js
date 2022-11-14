@@ -17,10 +17,12 @@ const CreateNew = ({ anecdotes, addNew }) => {
 
     const tyhjenna = (event) => {
       event.preventDefault()
-      content.reset()
-      author.reset()
-      info.reset()
+      navigate('/')
+      setTimeout(() => { navigate('/create') }, 1);
     }
+    //name='content' type={content.type} value={content.value} onChange={content.onChange}
+    //name='author' type={author.type} value={author.value} onChange={author.onChange}
+    //name='info' type={info.type} value={info.value} onChange={info.onChange}
 
     return (
         <div>
@@ -30,10 +32,10 @@ const CreateNew = ({ anecdotes, addNew }) => {
               <input {...content} />
             </div>
             <div>author
-              <input name='author' type={author.type} value={author.value} onChange={author.onChange} />
+              <input {...author} />
             </div>
             <div>url for more info
-              <input name='info' type={info.type} value={info.value} onChange={info.onChange} />
+              <input {...info} />
             </div>
             <button onClick={handleSubmit}>create</button>
             <button onClick={tyhjenna}>reset</button>
