@@ -1,39 +1,32 @@
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import useField from '../hooks/index.js'
 
 const CreateNew = ({ anecdotes, addNew }) => {
     console.log('CreateNew anecdotes:', anecdotes)
-    const [content, setContent] = useState('')
-    const [author, setAuthor] = useState('')
-    const [info, setInfo] = useState('')
     const navigate = useNavigate()
+    const content = useField('text')
+    const author = useField('text')
+    const info = useField('text')
 
     const handleSubmit = (event) => {
       event.preventDefault()
-      console.log('handleSubmit parametrit:', content, author, info)
-      addNew({ content, author, info, votes: 0 })
-      setContent('')
-      setAuthor('')
-      setInfo('')
+      console.log('CreateNew handleSubmit parametrit:', content, author, info)
+      addNew({ content: content.value, author: author.value, info: info.value, votes: 0 })
       navigate('/')
     }
-
-    const handleContentChange = (event) => { setContent(event.target.value) }
-    const handleAuthorChange = (event) => { setAuthor(event.target.value) }
-    const handleInfoChange = (event) => { setInfo(event.target.value) }
 
     return (
         <div>
           <h2>create a new anecdote</h2>
           <form>
             <div>content
-              <input name='content' value={content} onChange={handleContentChange} />
+              <input {...content} />
             </div>
             <div>author
-              <input name='author' value={author} onChange={handleAuthorChange} />
+              <input name='author' type={author.type} value={author.value} onChange={author.onChange} />
             </div>
             <div>url for more info
-              <input name='info' value={info} onChange={handleInfoChange} />
+              <input name='info' type={info.type} value={info.value} onChange={info.onChange} />
             </div>
             <button onClick={handleSubmit}>create</button>
           </form>

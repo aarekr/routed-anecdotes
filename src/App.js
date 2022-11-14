@@ -33,7 +33,6 @@ const App = () => {
 
   /*const anecdoteById = (id) =>
     anecdotes.find(a => a.id === id)
-
   const vote = (id) => {
     const anecdote = anecdoteById(id)
     const voted = {
